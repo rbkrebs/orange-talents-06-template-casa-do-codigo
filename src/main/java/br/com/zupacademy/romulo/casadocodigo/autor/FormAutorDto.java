@@ -1,10 +1,11 @@
 package br.com.zupacademy.romulo.casadocodigo.autor;
 
 
+
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-
 public class FormAutorDto {
 
     @NotBlank(message = "O campo nome é obrigatório")
@@ -12,6 +13,7 @@ public class FormAutorDto {
 
     @NotBlank(message = "O campo email é obrigatório")
     @Email(message = "Campo email em formato não válido")
+    @EmailValidatorAnnotation
     private String email;
     @NotBlank(message = "O campo descrição é obrigatório")
     @Size(max = 400, message = "Máximo de {max} caracteres")
@@ -42,4 +44,14 @@ public class FormAutorDto {
                         formAutorDto.getDescricao());
 
     }
+
+    public static FormAutorDto converteModelParaDto(Autor autor){
+
+        return new FormAutorDto(autor.getNome(),
+                autor.getEmail(),
+                autor.getDescricao());
+
+    }
+
+
 }

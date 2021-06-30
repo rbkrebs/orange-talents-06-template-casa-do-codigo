@@ -25,16 +25,10 @@ public class AutorController {
     public ResponseEntity cadastrar(@RequestBody @Valid FormAutorDto formAutorDto){
 
         Autor autor = FormAutorDto.converteDtoParaModel(formAutorDto);
-        try{
-            autorRepository.save(autor);
 
-            return ResponseEntity.ok(new FormAutorDto(autor.getNome(),autor.getEmail(), autor.getDescricao()));
+        autorRepository.save(autor);
 
-        }catch (Exception e){
-
-            return ResponseEntity.badRequest().body(e);
-        }
-
+        return ResponseEntity.ok(FormAutorDto.converteModelParaDto(autor));
 
 
     }

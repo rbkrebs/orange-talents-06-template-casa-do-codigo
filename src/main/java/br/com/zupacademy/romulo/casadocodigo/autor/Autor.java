@@ -3,10 +3,8 @@ package br.com.zupacademy.romulo.casadocodigo.autor;
 
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.Instant;
@@ -35,6 +33,8 @@ public class Autor {
     @Column(updatable = false, nullable = false)
     private Instant criadoEm;
 
+    @Deprecated
+    Autor(){}
 
     public Autor(String nome, String email, String descricao) {
         this.nome = nome;
