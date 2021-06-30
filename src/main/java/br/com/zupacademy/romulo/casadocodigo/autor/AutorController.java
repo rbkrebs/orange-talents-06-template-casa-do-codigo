@@ -1,6 +1,9 @@
 package br.com.zupacademy.romulo.casadocodigo.autor;
 
 
+import br.com.zupacademy.romulo.casadocodigo.categoria.Categoria;
+import br.com.zupacademy.romulo.casadocodigo.categoria.CategoriaRepository;
+import br.com.zupacademy.romulo.casadocodigo.categoria.FormCategoriaDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,15 +16,19 @@ import javax.validation.Valid;
 
 
 @RestController
-@RequestMapping("/autores")
+
 public class AutorController {
 
     @Autowired
     private AutorRepository autorRepository;
 
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
 
     @PostMapping
     @Transactional
+    @RequestMapping("/autores")
     public ResponseEntity cadastrar(@RequestBody @Valid FormAutorDto formAutorDto){
 
         Autor autor = FormAutorDto.converteDtoParaModel(formAutorDto);
@@ -29,6 +36,20 @@ public class AutorController {
         autorRepository.save(autor);
 
         return ResponseEntity.ok(FormAutorDto.converteModelParaDto(autor));
+
+
+    }
+
+    @PostMapping
+    @Transactional
+    @RequestMapping("/categorias")
+    public ResponseEntity cadastrar(@RequestBody @Valid FormCategoriaDto formCategoriaDto){
+
+        Categoria categoria = FormCategoriaDto.converteDtoParaModel(formCategoriaDto);
+
+        categoriaRepository.save(categoria);
+
+        return ResponseEntity.ok(FormCategoriaDto.converteModelParaDto(categoria));
 
 
     }

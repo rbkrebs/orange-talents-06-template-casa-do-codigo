@@ -13,7 +13,7 @@ public class FormAutorDto {
 
     @NotBlank(message = "O campo email é obrigatório")
     @Email(message = "Campo email em formato não válido")
-    @EmailValidatorAnnotation
+    @ValorUnico(atributo= "email", entidade = "Autor")
     private String email;
     @NotBlank(message = "O campo descrição é obrigatório")
     @Size(max = 400, message = "Máximo de {max} caracteres")
