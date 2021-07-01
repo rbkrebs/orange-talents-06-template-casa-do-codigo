@@ -1,23 +1,34 @@
 package br.com.zupacademy.romulo.casadocodigo.livro;
 
 
+import br.com.zupacademy.romulo.casadocodigo.autor.AutorRepository;
+import br.com.zupacademy.romulo.casadocodigo.categoria.CategoriaRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/livros")
 public class LivroController {
 
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @PostMapping
-    public ResponseEntity<Livro> cadastra(FormLivroDto formLivroDto){
+    @Transactional
+    public ResponseEntity cadastra(@RequestBody @Valid FormLivroDto formLivroDto){
 
-        Livro fLivro = formLivroDto.salvar(formLivroDto);
+        Livro fLivro = formLivroDto.salvar(formLivroDto, entityManager);
 
-        return ResponseEntity.ok().body(fLivro);
+        entityManager.persist(fLivro);
+
+        return ResponseEntity.ok(fLivro.toString());
 
     }
 

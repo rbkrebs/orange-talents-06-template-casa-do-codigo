@@ -9,7 +9,7 @@ import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 public class Livro {
@@ -27,6 +27,8 @@ public class Livro {
     private String resumoLivro;
 
     @Lob
+    @NotBlank
+    @Column(nullable = false)
     private String sumario;
 
     @Min(20)
@@ -43,7 +45,7 @@ public class Livro {
     private String isbn;
 
     @Future
-    private LocalDateTime dataLancamento;
+    private LocalDate dataLancamento;
 
     @ManyToOne
     private Categoria categoria;
@@ -51,9 +53,12 @@ public class Livro {
     @ManyToOne
     private Autor autor;
 
+    @Deprecated
+    Livro(){}
 
 
-    public Livro(String titulo, String resumoLivro, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, LocalDateTime dataLancamento, Categoria categoria, Autor autor) {
+
+    public Livro(String titulo, String resumoLivro, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, LocalDate dataLancamento, Categoria categoria, Autor autor) {
         this.titulo = titulo;
         this.resumoLivro = resumoLivro;
         this.sumario = sumario;

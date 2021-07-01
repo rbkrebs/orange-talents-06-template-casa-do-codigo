@@ -6,18 +6,20 @@ import br.com.zupacademy.romulo.casadocodigo.categoria.Categoria;
 import br.com.zupacademy.romulo.casadocodigo.categoria.CategoriaRepository;
 import br.com.zupacademy.romulo.casadocodigo.validadores.ExisteRegistro;
 import br.com.zupacademy.romulo.casadocodigo.validadores.ValorUnico;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.EntityManager;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class FormLivroDto {
 
     @JsonProperty
     @NotBlank
-    @ValorUnico(atributo = "titulo", entidade = "Titulo")
+    @ValorUnico(atributo = "titulo", entidade = "Livro")
     private String titulo;
 
     @JsonProperty
@@ -26,15 +28,16 @@ public class FormLivroDto {
     private String resumo;
 
     @JsonProperty
+    @NotBlank
     private String sumario;
 
     @JsonProperty
-    @NotBlank
+    @NotNull
     @Min(value = 20, message = "valor mínimo de {value}")
     private BigDecimal preco;
 
     @JsonProperty
-    @NotBlank
+    @NotNull
     @Min(value = 100, message = "valor mínimo de {value}")
     private Integer numeroPaginas;
 
@@ -45,24 +48,18 @@ public class FormLivroDto {
 
     @JsonProperty
     @Future
-    private LocalDateTime dataLancamento;
+    @JsonFormat(pattern = "yyyy/MM/dd", shape = JsonFormat.Shape.STRING)
+    private LocalDate dataLancamento;
 
-    @NotBlank
+    @NotNull
     @ExisteRegistro(entidade = "Categoria", atributo = "id")
     private Long idCategoria;
 
-    @NotBlank
+    @NotNull
     @ExisteRegistro(entidade = "Autor", atributo = "id")
     private Long idAutor;
 
-    @Autowired
-    private AutorRepository autorRepository;
 
-    @Autowired
-    private CategoriaRepository categoriaRepository;
-
-    @Autowired
-    LivroRepository livroRepository;
 
 
     public Long getIdCategoria() {
@@ -73,12 +70,16 @@ public class FormLivroDto {
         return idAutor;
     }
 
-    public Livro salvar(FormLivroDto formLivroDto) {
 
-        Categoria categoria = categoriaRepository.findById(formLivroDto.getIdCategoria()).get();
-        Autor autor = autorRepository.findById(formLivroDto.getIdAutor()).get();
 
-        Livro livro = new Livro(formLivroDto.titulo,
+    public Livro salvar(FormLivroDto formLivroDto, EntityManager entityManager) {
+
+
+        Autor autor = entityManager.find(Autor.class, idAutor);
+        Categoria categoria = entityManager.find(Categoria.class, idCategoria);
+
+
+        return new Livro(formLivroDto.titulo,
                                 formLivroDto.resumo,
                                 formLivroDto.sumario,
                                 formLivroDto.preco,
@@ -87,7 +88,8 @@ public class FormLivroDto {
                                 formLivroDto.dataLancamento,
                                 categoria, autor);
 
-        return livro;
+
+
 
     }
 
