@@ -13,9 +13,9 @@ public class LivroController {
 
 
     @PostMapping
-    public ResponseEntity<FormLivroDto> cadastra(FormLivroDto formLivroDto){
+    public ResponseEntity<Livro> cadastra(FormLivroDto formLivroDto){
 
-        FormLivroDto fLivro = formLivroDto.salvar(formLivroDto);
+        Livro fLivro = formLivroDto.salvar(formLivroDto);
 
         return ResponseEntity.ok().body(fLivro);
 
