@@ -1,7 +1,7 @@
 package br.com.zupacademy.romulo.casadocodigo.categoria;
 
 
-import br.com.zupacademy.romulo.casadocodigo.autor.ValorUnico;
+import br.com.zupacademy.romulo.casadocodigo.validadores.ValorUnico;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 import javax.validation.constraints.NotBlank;

@@ -1,5 +1,6 @@
-package br.com.zupacademy.romulo.casadocodigo.autor;
+package br.com.zupacademy.romulo.casadocodigo.validadores;
 
+import br.com.zupacademy.romulo.casadocodigo.autor.ErroFormAutorDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;

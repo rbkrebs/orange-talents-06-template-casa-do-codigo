@@ -1,4 +1,4 @@
-package br.com.zupacademy.romulo.casadocodigo.autor;
+package br.com.zupacademy.romulo.casadocodigo.validadores;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

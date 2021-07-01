@@ -1,4 +1,4 @@
-package br.com.zupacademy.romulo.casadocodigo.autor;
+package br.com.zupacademy.romulo.casadocodigo.validadores;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

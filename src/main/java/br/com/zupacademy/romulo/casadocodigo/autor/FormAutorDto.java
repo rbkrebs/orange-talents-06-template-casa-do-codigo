@@ -3,6 +3,8 @@ package br.com.zupacademy.romulo.casadocodigo.autor;
 
 
 
+import br.com.zupacademy.romulo.casadocodigo.validadores.ValorUnico;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

@@ -16,19 +16,15 @@ import javax.validation.Valid;
 
 
 @RestController
-
+@RequestMapping("/autores")
 public class AutorController {
 
     @Autowired
     private AutorRepository autorRepository;
 
-    @Autowired
-    private CategoriaRepository categoriaRepository;
-
 
     @PostMapping
     @Transactional
-    @RequestMapping("/autores")
     public ResponseEntity cadastrar(@RequestBody @Valid FormAutorDto formAutorDto){
 
         Autor autor = FormAutorDto.converteDtoParaModel(formAutorDto);
@@ -40,17 +36,5 @@ public class AutorController {
 
     }
 
-    @PostMapping
-    @Transactional
-    @RequestMapping("/categorias")
-    public ResponseEntity cadastrar(@RequestBody @Valid FormCategoriaDto formCategoriaDto){
 
-        Categoria categoria = FormCategoriaDto.converteDtoParaModel(formCategoriaDto);
-
-        categoriaRepository.save(categoria);
-
-        return ResponseEntity.ok(FormCategoriaDto.converteModelParaDto(categoria));
-
-
-    }
 }
