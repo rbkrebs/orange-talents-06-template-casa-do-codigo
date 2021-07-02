@@ -93,4 +93,31 @@ public class Livro {
         return this.id;
     }
 
+    public String getResumoLivro() {
+        return resumoLivro;
+    }
+
+    public String getSumario() {
+        return sumario;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public Integer getNumeroPaginas() {
+        return numeroPaginas;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
 }

@@ -39,9 +39,22 @@ public class LivroController {
         List<ResquestLivroDto> livros = ResquestLivroDto.fromLivroModel(entityManager);
 
         return ResponseEntity.ok(livros);
+    }
 
+    @GetMapping("/{id}")
+    public ResponseEntity detalheLivro(@PathVariable @Valid  Long id) {
 
+        Livro livro = entityManager.find(Livro.class, id);
+
+        if(livro == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        RequestLivroDetalhesDto livroDetalhesDto = RequestLivroDetalhesDto.detalhar(livro);
+
+        return ResponseEntity.ok(livroDetalhesDto);
 
     }
+    
 
 }
