@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/livros")
@@ -29,6 +30,17 @@ public class LivroController {
         entityManager.persist(fLivro);
 
         return ResponseEntity.ok(fLivro.toString());
+
+    }
+
+    @GetMapping
+    public ResponseEntity listar() {
+
+        List<ResquestLivroDto> livros = ResquestLivroDto.fromLivroModel(entityManager);
+
+        return ResponseEntity.ok(livros);
+
+
 
     }
 

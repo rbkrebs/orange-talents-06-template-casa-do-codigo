@@ -20,7 +20,6 @@ public class CategoriaController {
 
     @PostMapping
     @Transactional
-
     public ResponseEntity cadastrar(@RequestBody @Valid FormCategoriaDto formCategoriaDto){
 
         Categoria categoria = FormCategoriaDto.converteDtoParaModel(formCategoriaDto);

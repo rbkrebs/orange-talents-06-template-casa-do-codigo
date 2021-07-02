@@ -47,15 +47,15 @@ public class Livro {
     @Future
     private LocalDate dataLancamento;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Categoria categoria;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Autor autor;
 
     @Deprecated
-    Livro(){}
-
+    Livro() {
+    }
 
 
     public Livro(String titulo, String resumoLivro, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, LocalDate dataLancamento, Categoria categoria, Autor autor) {
@@ -84,4 +84,13 @@ public class Livro {
                 ", Autor=" + autor +
                 '}';
     }
+
+    public String getTitulo() {
+        return this.titulo;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
 }
