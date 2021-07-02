@@ -1,13 +1,8 @@
 package br.com.zupacademy.romulo.casadocodigo.livro;
 
-import br.com.zupacademy.romulo.casadocodigo.autor.Autor;
-import br.com.zupacademy.romulo.casadocodigo.autor.RequestAutorDetalhe;
-import br.com.zupacademy.romulo.casadocodigo.validadores.ExisteRegistro;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 public class RequestLivroDetalhesDto {

@@ -58,7 +58,16 @@ public class Livro {
     }
 
 
-    public Livro(String titulo, String resumoLivro, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, LocalDate dataLancamento, Categoria categoria, Autor autor) {
+    public Livro(String titulo,
+                 String resumoLivro,
+                 String sumario,
+                 BigDecimal preco,
+                 Integer numeroPaginas,
+                 String isbn,
+                 LocalDate dataLancamento,
+                 Categoria categoria,
+                 Autor autor) {
+
         this.titulo = titulo;
         this.resumoLivro = resumoLivro;
         this.sumario = sumario;
