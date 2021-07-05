@@ -6,6 +6,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -25,6 +26,14 @@ public class ErroValidacaoHandler {
     public List<ErroFormAutorDto> handle(MethodArgumentNotValidException exception){
 
         List<ErroFormAutorDto> erroFormAutorDtoList = new ArrayList<>();
+        List<ObjectError> classError = exception.getBindingResult().getGlobalErrors();
+
+        classError.forEach(erro -> {
+            String mensagem = messageSource.getMessage(erro, LocaleContextHolder.getLocale());
+            ErroFormAutorDto erroDto = new ErroFormAutorDto(erro.getDefaultMessage(), mensagem);
+            erroFormAutorDtoList.add(erroDto);
+        });
+        
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
         fieldErrors.forEach(erro -> {
 

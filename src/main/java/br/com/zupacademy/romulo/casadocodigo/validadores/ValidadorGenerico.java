@@ -28,7 +28,7 @@ public class ValidadorGenerico implements ConstraintValidator<ValorUnico, String
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
 
-        Query query = em.createQuery("SELECT s FROM "+this.tabela+" s where "+this.atributo+"='"+s+"'");
+        Query query = em.createQuery("SELECT s FROM "+this.tabela+" s where "+this.atributo+"=:s").setParameter("s", s);
 
         return query.getResultList().isEmpty();
 

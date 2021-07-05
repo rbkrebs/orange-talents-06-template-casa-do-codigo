@@ -1,30 +1,32 @@
 package br.com.zupacademy.romulo.casadocodigo.pais;
 
 import br.com.zupacademy.romulo.casadocodigo.validadores.ValorUnico;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import javax.persistence.EntityManager;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import javax.validation.constraints.NotBlank;
 
 public class FormPaisDto {
 
     @NotBlank
-    @ValorUnico
+    @ValorUnico(entidade = "Pais", atributo = "nome")
     private String nome;
 
-    public FormPaisDto(String nome) {
+
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+    public FormPaisDto(@NotBlank @ValorUnico(entidade = "Pais", atributo = "nome") String nome) {
         this.nome = nome;
     }
 
-    public static FormPaisDto convertToModel(@NotBlank @ValorUnico FormPaisDto formPaisDto, EntityManager entityManager){
+    public static Pais convertToModel(@NotBlank String formPaisDto){
 
-        entityManager.persist(new Pais(formPaisDto.getNome()));
+        Pais pais = new Pais(formPaisDto);
 
-        return formPaisDto;
+        return pais;
 
     }
 
-    private String getNome() {
+    public String getNome() {
         return this.nome;
     }
+
+
 }

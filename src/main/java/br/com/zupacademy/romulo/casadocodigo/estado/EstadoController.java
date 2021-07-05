@@ -1,6 +1,7 @@
-package br.com.zupacademy.romulo.casadocodigo.pais;
+package br.com.zupacademy.romulo.casadocodigo.estado;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,20 +14,21 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/paises")
-public class PaisController {
+@RequestMapping("/estados")
+public class EstadoController {
 
     @PersistenceContext
     private EntityManager em;
 
     @PostMapping
     @Transactional
-    public ResponseEntity criar(@RequestBody @Valid FormPaisDto formPaisDto){
+    public ResponseEntity cadastrar(@RequestBody @Valid FormEstadoDto formEstadoDto){
 
-        Pais pais = FormPaisDto.convertToModel(formPaisDto.getNome());
+        Estado estado = FormEstadoDto.converteEstado(formEstadoDto, em);
+        em.persist(estado);
 
-        em.persist(pais);
-
-        return ResponseEntity.ok(pais);
+        return ResponseEntity.ok(estado);
     }
+
+
 }

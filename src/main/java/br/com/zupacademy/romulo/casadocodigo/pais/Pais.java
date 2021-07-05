@@ -15,13 +15,11 @@ public class Pais {
     private String nome;
 
 
+    @Deprecated
+    public Pais(){};
     public Pais(String nome) {
         this.nome = nome;
     }
 
 
-    public String getNome() {
-
-        return this.nome;
-    }
 }
