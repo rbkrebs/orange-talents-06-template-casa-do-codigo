@@ -1,11 +1,11 @@
-package br.com.zupacademy.romulo.casadocodigo.autor;
+package br.com.zupacademy.romulo.casadocodigo.validadores;
 
-public class ErroFormAutorDto {
+public class ErroCampoDto {
 
     private String campo;
     private String mensagem;
 
-    public ErroFormAutorDto(String campo, String mensagem) {
+    public ErroCampoDto(String campo, String mensagem) {
         this.campo = campo;
         this.mensagem = mensagem;
     }

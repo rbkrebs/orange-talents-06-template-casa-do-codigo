@@ -1,6 +1,5 @@
 package br.com.zupacademy.romulo.casadocodigo.validadores;
 
-import br.com.zupacademy.romulo.casadocodigo.autor.ErroFormAutorDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -23,22 +22,22 @@ public class ErroValidacaoHandler {
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<ErroFormAutorDto> handle(MethodArgumentNotValidException exception){
+    public List<ErroCampoDto> handle(MethodArgumentNotValidException exception){
 
-        List<ErroFormAutorDto> erroFormAutorDtoList = new ArrayList<>();
+        List<ErroCampoDto> erroFormAutorDtoList = new ArrayList<>();
         List<ObjectError> classError = exception.getBindingResult().getGlobalErrors();
 
         classError.forEach(erro -> {
             String mensagem = messageSource.getMessage(erro, LocaleContextHolder.getLocale());
-            ErroFormAutorDto erroDto = new ErroFormAutorDto(erro.getDefaultMessage(), mensagem);
+            ErroCampoDto erroDto = new ErroCampoDto(erro.getDefaultMessage(), mensagem);
             erroFormAutorDtoList.add(erroDto);
         });
-        
+
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
         fieldErrors.forEach(erro -> {
 
             String mensagem = messageSource.getMessage(erro, LocaleContextHolder.getLocale());
-            ErroFormAutorDto erroDto = new ErroFormAutorDto(erro.getField(), mensagem);
+            ErroCampoDto erroDto = new ErroCampoDto(erro.getField(), mensagem);
             erroFormAutorDtoList.add(erroDto);
 
         });
