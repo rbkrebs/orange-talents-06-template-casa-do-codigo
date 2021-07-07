@@ -23,7 +23,9 @@ public class ValidadorPaisComEstado implements ConstraintValidator<PaisComEstado
     @Override
     public boolean isValid(FormClienteDto formClienteDto, ConstraintValidatorContext constraintValidatorContext) {
 
-        Boolean valid = er.findByPaisesId(formClienteDto.getIdPais()).isEmpty();
-        return !valid;
+            Boolean valid = er.findByIdAndPaisesId(formClienteDto.getIdEstado(), formClienteDto.getIdPais()).isEmpty();
+          
+            return !valid;
+
     }
 }

@@ -10,4 +10,6 @@ public interface EstadoRepository extends CrudRepository<Estado, Long> {
     Optional<Estado> findByNomeAndPaisesId(String nome, Long Id);
 
     Optional<Estado> findByPaisesId(Long id);
+
+    Optional<Object> findByIdAndPaisesId(Long idEstado, Long idPais);
 }

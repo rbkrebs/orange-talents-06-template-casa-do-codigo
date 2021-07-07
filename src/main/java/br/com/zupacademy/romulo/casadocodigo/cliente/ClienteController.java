@@ -26,6 +26,6 @@ public class ClienteController {
 
             ResponseClienteDto responseClienteDto = FormClienteDto.converteToModel(fcDto, entityManager);
 
-            return null;
+            return ResponseEntity.ok(responseClienteDto);
     }
 }

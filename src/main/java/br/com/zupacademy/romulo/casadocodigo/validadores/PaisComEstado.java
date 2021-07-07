@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = ValidadorPaisComEstado.class)
 public @interface PaisComEstado {
 
-    String message() default "País com estados cadastrados, favor informar o estado";
+    String message() default "País com estados cadastrados ou estado não pertence ao país indicado";
 
     Class<?>[] groups() default {};
 

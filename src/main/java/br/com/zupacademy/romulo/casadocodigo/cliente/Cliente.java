@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Cliente {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,9 +25,9 @@ public class Cliente {
     @Column(nullable = false)
     private String sobreNome;
 
-    @NotNull
+    @NotBlank
     @Column(nullable = false, unique = true)
-    private Integer documento;
+    private String documento;
 
     @NotBlank
     @Column(nullable = false)
@@ -45,33 +46,25 @@ public class Cliente {
     private String complemento;
 
     @NotNull
-    @Column(nullable = false)
     @ManyToOne
     private Pais pais;
 
-    @Column(nullable = true)
+
     @ManyToOne
     private Estado estado;
 
-    @NotNull
+    @NotBlank
     @Column(nullable = false)
-    private Integer telefone;
+    private String telefone;
 
-    @NotNull
+    @NotBlank
     @Column(nullable = false)
-    private Integer cep;
+    private String cep;
 
-    public Cliente(String nome,
-                   String sobreNome,
-                   Integer documento,
-                   String cidade,
-                   String email,
-                   String endereco,
-                   String complemento,
-                   Pais pais,
-                   Estado estado,
-                   Integer telefone,
-                   Integer cep) {
+    @Deprecated
+    Cliente(){}
+
+    public Cliente(String nome, String sobreNome, String documento, String cidade, String email, String endereco, String complemento, Pais pais, Estado estado, String telefone, String cep) {
         this.nome = nome;
         this.sobreNome = sobreNome;
         this.documento = documento;
@@ -83,5 +76,10 @@ public class Cliente {
         this.estado = estado;
         this.telefone = telefone;
         this.cep = cep;
+    }
+
+    public Long getId() {
+
+        return this.id;
     }
 }

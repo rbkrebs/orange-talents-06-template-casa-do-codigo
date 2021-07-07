@@ -28,6 +28,7 @@ public class ErroValidacaoHandler {
         List<ObjectError> classError = exception.getBindingResult().getGlobalErrors();
 
         classError.forEach(erro -> {
+            System.out.println(erro);
             String mensagem = messageSource.getMessage(erro, LocaleContextHolder.getLocale());
             ErroCampoDto erroDto = new ErroCampoDto(erro.getDefaultMessage(), mensagem);
             erroFormAutorDtoList.add(erroDto);

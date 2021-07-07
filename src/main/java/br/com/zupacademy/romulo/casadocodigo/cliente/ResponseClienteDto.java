@@ -17,4 +17,7 @@ public class ResponseClienteDto {
     }
 
 
+    public static ResponseClienteDto covertDto(Cliente cliente) {
+        return new ResponseClienteDto(cliente.getId());
+    }
 }

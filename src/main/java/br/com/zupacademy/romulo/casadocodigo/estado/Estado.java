@@ -20,7 +20,6 @@ public class Estado {
 
     @NotNull
     @ManyToOne
-
     private Pais paises;
 
     @Deprecated
@@ -29,5 +28,14 @@ public class Estado {
     public Estado(@NotBlank String nome, @NotBlank Pais paises) {
         this.nome = nome;
         this.paises = paises;
+    }
+
+    @Override
+    public String toString() {
+        return "Estado{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+
+                '}';
     }
 }
