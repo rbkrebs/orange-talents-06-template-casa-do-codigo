@@ -16,7 +16,7 @@ public class ValidadorForeingKeyUnica implements ConstraintValidator<ForeignKeyU
     @Autowired
     private EstadoRepository er;
 
-    private String atributo;
+
 
     @Override
     public void initialize(ForeignKeyUnica constraintAnnotation) {

@@ -46,8 +46,11 @@ public class Cliente {
 
     @NotNull
     @Column(nullable = false)
+    @ManyToOne
     private Pais pais;
 
+    @Column(nullable = true)
+    @ManyToOne
     private Estado estado;
 
     @NotNull

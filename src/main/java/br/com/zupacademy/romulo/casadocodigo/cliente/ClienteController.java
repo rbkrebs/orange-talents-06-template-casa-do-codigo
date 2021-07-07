@@ -22,7 +22,9 @@ public class ClienteController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<formClienteDto> cadastrar(@RequestBody @Valid formClienteDto fcDto){
+    public ResponseEntity<ResponseClienteDto> cadastrar(@RequestBody @Valid FormClienteDto fcDto){
+
+            ResponseClienteDto responseClienteDto = FormClienteDto.converteToModel(fcDto, entityManager);
 
             return null;
     }

@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface EstadoRepository extends CrudRepository<Estado, Long> {
 
     Optional<Estado> findByNomeAndPaisesId(String nome, Long Id);
+
+    Optional<Estado> findByPaisesId(Long id);
 }

@@ -2,54 +2,58 @@ package br.com.zupacademy.romulo.casadocodigo.cliente;
 
 import br.com.zupacademy.romulo.casadocodigo.estado.Estado;
 import br.com.zupacademy.romulo.casadocodigo.pais.Pais;
+import br.com.zupacademy.romulo.casadocodigo.validadores.PaisComEstado;
+import br.com.zupacademy.romulo.casadocodigo.validadores.ValorUnico;
 
-import javax.persistence.Column;
+import javax.persistence.EntityManager;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class formClienteDto {
+@PaisComEstado
+public class FormClienteDto {
 
     @NotBlank
-    @Column(nullable = false)
     private String nome;
 
     @NotBlank
-    @Column(nullable = false)
     private String sobreNome;
 
     @NotNull
-    @Column(nullable = false, unique = true)
+    @ValorUnico(entidade = "Cliente", atributo = "documento")
     private Integer documento;
 
     @NotBlank
-    @Column(nullable = false)
     private String cidade;
 
     @Email
-    @Column(unique = true, nullable = false)
+    @ValorUnico(entidade = "Cliente", atributo = "email")
     private String email;
 
     @NotBlank
-    @Column(nullable = false)
     private String endereco;
 
     @NotBlank
-    @Column(nullable = false)
     private String complemento;
 
     @NotNull
-    @Column(nullable = false)
-    private Pais pais;
+    private Long idPais;
 
-    private Estado estado;
+    private Long idEstado;
 
     @NotNull
-    @Column(nullable = false)
     private Integer telefone;
 
     @NotNull
-    @Column(nullable = false)
     private Integer cep;
 
+
+    public Long getIdPais() {
+        return idPais;
+    }
+
+    public static ResponseClienteDto converteToModel(FormClienteDto fcDto, EntityManager entityManager) {
+return null;
+
+    }
 }
